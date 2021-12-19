@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
     private PlayerControllerTSafe player;
+    public SerialHandler serialHandler;
 
     private float lateStart = 0.1f;
 
@@ -42,6 +43,18 @@ public class GameManager : MonoBehaviour
     public float GetPlayerY()
     {
         if (player) return player.transform.position.y;
+        else return 0f;
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        if (player) return player.transform.position;
+        else return Vector3.zero;
+    }
+
+    public float GetPlayerLightIntensity()
+    {
+        if (player) return player.GetComponent<PlayerLight>().LightIntensity;
         else return 0f;
     }
 

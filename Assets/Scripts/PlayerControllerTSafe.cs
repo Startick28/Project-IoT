@@ -449,7 +449,6 @@ public class PlayerControllerTSafe : MonoBehaviour
             {
                 if (currentVelocityY <= 0)
                 {
-                    Debug.Log(hit.point.y);
                     float tmp = hit.point.y + 0.5f;
                     if (tmp > fixedY -0.02f){
                         fixedY = tmp;
