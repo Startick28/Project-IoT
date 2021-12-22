@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: -7681161182174886599}
   - component: {fileID: -1292674881918845883}
   - component: {fileID: -5472769660165209893}
+  - component: {fileID: 7734187428626537107}
   m_Layer: 0
   m_Name: PlayerT
   m_TagString: Player
@@ -307,6 +308,7 @@ MonoBehaviour:
   deathShakePreset: {fileID: 11400000, guid: c707cd62e14fa8049b97e99ff7f6bed8, type: 2}
   dashShakePreset: {fileID: 11400000, guid: e3dfd3ab683e90e499279b6e1b7b0bf2, type: 2}
   landShakePreset: {fileID: 11400000, guid: ccd57fc5ca9c51045a0ee116cba47c0f, type: 2}
+  stream: {fileID: 0}
 --- !u!54 &-5472769660165209893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -323,6 +325,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7734187428626537107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668954153288047254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b558e8283577eaa44b47ad966849def0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portCom: COM6
+  serialBaud: 38400
 --- !u!1 &1668954153299691355
 GameObject:
   m_ObjectHideFlags: 0

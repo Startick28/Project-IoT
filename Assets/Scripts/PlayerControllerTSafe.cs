@@ -95,6 +95,8 @@ public class PlayerControllerTSafe : MonoBehaviour
     [SerializeField] private MilkShake.ShakePreset dashShakePreset;
     [SerializeField] private MilkShake.ShakePreset landShakePreset;
 
+
+    [SerializeField] private Serial stream;
     //SFX PARAMETERS
     void Start()
     {
@@ -108,6 +110,7 @@ public class PlayerControllerTSafe : MonoBehaviour
         airDecelerationSpeed = baseMovementSpeed / airDecelerationDuration;
         currentVerticalFriction = 0f;
         gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        stream = GetComponent<Serial>();
     }
 
     void Update()
@@ -142,7 +145,10 @@ public class PlayerControllerTSafe : MonoBehaviour
         if (sprinting)
             ParticleManager.instance.startSprintParticle();
 
-        if (Input.GetButtonDown("Jump")) jumping = true;
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumping = true;
+        }
 
         // DEFINITION DE L ETAT //
 
@@ -394,8 +400,31 @@ public class PlayerControllerTSafe : MonoBehaviour
         float tmp = Mathf.Abs(currentVelocityY) / 20f;
 
         if (currentVelocityY >= 0 && currentPlayerState != SpecialState.DASHING) spriteTransform.localScale = new Vector3( Mathf.Lerp(0.9f,1f, tmp* tmp), Mathf.Lerp(1.15f,1f, tmp), 1f);
-        if (grounded || againstLeftWall || againstRightWall || currentPlayerState == SpecialState.DASHING) spriteTransform.localScale = new Vector3(1.02f, 1f, 1f); 
+        if (grounded || againstLeftWall || againstRightWall || currentPlayerState == SpecialState.DASHING) spriteTransform.localScale = new Vector3(1.02f, 1f, 1f);
 
+        // Arduino Part
+
+        if (canDoubleJump || !jumping)
+        {
+
+            stream.WriteToArduino("DoubleJumpLedOn");
+        }
+        else
+        {
+
+            stream.WriteToArduino("DoubleJumpLedOff");
+        }
+
+        if (canDash)
+        {
+            Debug.Log("Cooucou");
+            stream.WriteToArduino("DashLedOn");
+        }
+        else
+        {
+
+            stream.WriteToArduino("DashLedOff");
+        }
     }
 
     void CollisionCheck()
